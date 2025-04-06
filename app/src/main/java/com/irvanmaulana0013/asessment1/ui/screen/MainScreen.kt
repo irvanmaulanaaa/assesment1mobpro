@@ -1,5 +1,6 @@
 package com.irvanmaulana0013.asessment1.ui.screen
 
+
 import android.content.res.Configuration
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -14,9 +15,12 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -41,7 +45,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.irvanmaulana0013.asessment1.R
 import com.irvanmaulana0013.asessment1.ui.theme.Asessment1Theme
-import kotlin.math.pow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -67,8 +70,13 @@ fun MainScreen() {
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier) {
     var diameter by remember { mutableStateOf("") }
+    var diameterError by remember { mutableStateOf(false) }
+
     var jariJari by remember { mutableStateOf("") }
+    var jariJariError by remember { mutableStateOf(false) }
+
     var tinggi by remember { mutableStateOf("") }
+    var tinggiError by remember { mutableStateOf(false) }
 
     val radioOptions = listOf(
         stringResource(id = R.string.diameter),
@@ -116,7 +124,9 @@ fun ScreenContent(modifier: Modifier = Modifier) {
                 value = diameter,
                 onValueChange = { diameter = it },
                 label = { Text(text = stringResource(id = R.string.diameter)) },
-                trailingIcon = { Text(text = "m") },
+                trailingIcon = { IconPicker(diameterError, "m") },
+                supportingText = { ErrorHint(diameterError) },
+                isError = diameterError,
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number,
@@ -130,7 +140,9 @@ fun ScreenContent(modifier: Modifier = Modifier) {
                 value = jariJari,
                 onValueChange = { jariJari = it},
                 label = { Text(text = stringResource(id = R.string.jarijari)) },
-                trailingIcon = { Text(text = "m") },
+                trailingIcon = { IconPicker(jariJariError, "m") },
+                supportingText = { ErrorHint(jariJariError) },
+                isError = jariJariError,
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number,
@@ -144,7 +156,9 @@ fun ScreenContent(modifier: Modifier = Modifier) {
             value = tinggi,
             onValueChange = { tinggi = it},
             label = { Text(text = stringResource(id = R.string.tinggi)) },
-            trailingIcon = { Text(text = "m") },
+            trailingIcon = { IconPicker(tinggiError, "m") },
+            supportingText = { ErrorHint(tinggiError) },
+            isError = tinggiError,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -154,20 +168,22 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         )
         Button(
             onClick = {
-                val t = tinggi.toDoubleOrNull()
+                diameterError = (diameter == "" || diameter == "0")
+                jariJariError = (jariJari == "" || jariJari == "0")
+                tinggiError = (tinggi == "" || tinggi == "0")
+                if (diameterError || jariJariError || tinggiError) return@Button
+
+                val t = tinggi.toDouble()
 
                     if (option == radioOptions[0]) {
-                        val d = diameter.toDoubleOrNull()
-                        if (d != null && t != null) {
-                            result = hitungDiameter(d, t)
-                        }
+                        val d = diameter.toDouble()
+                        result = hitungDiameter(d, t)
+
                     } else {
-                    val r = jariJari.toDoubleOrNull()
-                    if (r != null && t != null) {
+                        val r = jariJari.toDouble()
                         result = hitungJarijari(r, t)
                     }
-                }
-            },
+                 },
             modifier = Modifier.padding(top = 12.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
         ) {
@@ -211,6 +227,22 @@ fun Option(label: String, isSelected: Boolean, modifier: Modifier) {
            style = MaterialTheme.typography.bodyLarge,
            modifier = Modifier.padding(start = 8.dp)
        )
+    }
+}
+
+@Composable
+fun IconPicker(isError: Boolean, unit: String) {
+    if (isError) {
+        Icon(imageVector = Icons.Filled.Warning, contentDescription = null)
+    } else {
+        Text(text = unit)
+    }
+}
+
+@Composable
+fun ErrorHint(isError: Boolean) {
+    if (isError) {
+        Text(text = stringResource(R.string.invalid))
     }
 }
 

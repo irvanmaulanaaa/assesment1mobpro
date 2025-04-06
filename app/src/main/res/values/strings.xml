@@ -8,4 +8,5 @@
     <string name="hitung">Hitung</string>
     <string name="teks">Volume tabung:</string>
     <string name="hasil">%1$.2f m³</string>
+    <string name="invalid">Tidak boleh kosong.</string>
 </resources>
