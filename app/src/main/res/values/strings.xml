@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Asessment 1</string>
+    <string name="app_name">Hivobung</string>
+    <string name="intro">Ayo menghitung volume sebuah tabung!
+        Masukkan data berikut:</string>
+    <string name="diameter">Diameter</string>
+    <string name="jarijari">Jari-jari</string>
+    <string name="tinggi">Tinggi</string>
+    <string name="hitung">Hitung</string>
+    <string name="hasil">Volume tabung:\n%1$.2f m³</string>
 </resources>
