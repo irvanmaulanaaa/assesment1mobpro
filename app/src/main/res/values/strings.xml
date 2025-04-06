@@ -6,5 +6,6 @@
     <string name="jarijari">Jari-jari</string>
     <string name="tinggi">Tinggi</string>
     <string name="hitung">Hitung</string>
-    <string name="hasil">Volume tabung:\n%1$.2f m³</string>
+    <string name="teks">Volume tabung:</string>
+    <string name="hasil">%1$.2f m³</string>
 </resources>

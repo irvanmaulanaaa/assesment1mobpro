@@ -180,19 +180,23 @@ fun ScreenContent(modifier: Modifier = Modifier) {
                 thickness = 1.dp
             )
             Text(
-                text = stringResource(R.string.hasil, result),
+                text = stringResource(R.string.teks),
                 style = MaterialTheme.typography.titleLarge
+            )
+            Text(
+                text = stringResource(R.string.hasil, result),
+                style = MaterialTheme.typography.headlineLarge
             )
         }
     }
 }
 
 private fun hitungDiameter (diameter: Double, tinggi: Double): Double {
-    return Math.PI * diameter.pow(2) * tinggi / 4
+    return Math.PI * diameter * diameter * tinggi / 4
 }
 
 private fun hitungJarijari (jariJari: Double, tinggi: Double): Double {
-    return Math.PI * jariJari.pow(2) * tinggi
+    return Math.PI * jariJari * jariJari * tinggi
 }
 
 @Composable
