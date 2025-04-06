@@ -9,4 +9,5 @@
     <string name="teks">Volume tabung:</string>
     <string name="hasil">%1$.2f m³</string>
     <string name="invalid">Tidak boleh kosong.</string>
+    <string name="reset">Reset</string>
 </resources>

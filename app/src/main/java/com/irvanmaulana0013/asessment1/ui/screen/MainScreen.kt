@@ -90,7 +90,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
@@ -133,7 +133,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier.fillMaxWidth()
-                    .padding(top = 12.dp)
+                    .padding(top = 20.dp)
             )
         } else {
             OutlinedTextField(
@@ -149,7 +149,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier.fillMaxWidth()
-                    .padding(top = 12.dp)
+                    .padding(top = 20.dp)
             )
         }
         OutlinedTextField(
@@ -166,28 +166,44 @@ fun ScreenContent(modifier: Modifier = Modifier) {
             ),
             modifier = Modifier.fillMaxWidth()
         )
-        Button(
-            onClick = {
-                diameterError = (diameter == "" || diameter == "0")
-                jariJariError = (jariJari == "" || jariJari == "0")
-                tinggiError = (tinggi == "" || tinggi == "0")
-                if (diameterError || jariJariError || tinggiError) return@Button
-
-                val t = tinggi.toDouble()
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                onClick = {
+                    tinggiError = (tinggi == "" || tinggi == "0")
 
                     if (option == radioOptions[0]) {
-                        val d = diameter.toDouble()
-                        result = hitungDiameter(d, t)
-
+                        diameterError = (diameter == "" || diameter == "0")
+                        if (diameterError || tinggiError) return@Button
+                        result = hitungDiameter(diameter.toDouble(), tinggi.toDouble())
                     } else {
-                        val r = jariJari.toDouble()
-                        result = hitungJarijari(r, t)
+                        jariJariError = (jariJari == "" || jariJari == "0")
+                        if (jariJariError || tinggiError) return@Button
+                        result = hitungJarijari(jariJari.toDouble(), tinggi.toDouble())
                     }
-                 },
-            modifier = Modifier.padding(top = 12.dp),
-            contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
-        ) {
-            Text(text = stringResource(R.string.hitung))
+                },
+                modifier = Modifier.padding(top = 12.dp, end = 16.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(R.string.hitung))
+            }
+            Button(
+                onClick = {
+                    diameter = ""
+                    jariJari = ""
+                    tinggi = ""
+                    diameterError = false
+                    jariJariError = false
+                    tinggiError = false
+                    result = 0.0
+                },
+                modifier = Modifier.padding(top = 12.dp, end = 16.dp),
+                contentPadding = PaddingValues(horizontal = 34.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(R.string.reset))
+            }
         }
 
         if (result != 0.0) {
@@ -207,26 +223,18 @@ fun ScreenContent(modifier: Modifier = Modifier) {
     }
 }
 
-private fun hitungDiameter (diameter: Double, tinggi: Double): Double {
-    return Math.PI * diameter * diameter * tinggi / 4
-}
-
-private fun hitungJarijari (jariJari: Double, tinggi: Double): Double {
-    return Math.PI * jariJari * jariJari * tinggi
-}
-
 @Composable
 fun Option(label: String, isSelected: Boolean, modifier: Modifier) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-       RadioButton(selected = isSelected, onClick = null)
-       Text(
-           text = label,
-           style = MaterialTheme.typography.bodyLarge,
-           modifier = Modifier.padding(start = 8.dp)
-       )
+        RadioButton(selected = isSelected, onClick = null)
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(start = 8.dp)
+        )
     }
 }
 
@@ -244,6 +252,14 @@ fun ErrorHint(isError: Boolean) {
     if (isError) {
         Text(text = stringResource(R.string.invalid))
     }
+}
+
+private fun hitungDiameter (diameter: Double, tinggi: Double): Double {
+    return Math.PI * diameter * diameter * tinggi / 4
+}
+
+private fun hitungJarijari (jariJari: Double, tinggi: Double): Double {
+    return Math.PI * jariJari * jariJari * tinggi
 }
 
 @Preview(showBackground = true)
