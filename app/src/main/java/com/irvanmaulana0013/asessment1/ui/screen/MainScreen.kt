@@ -63,7 +63,6 @@ fun MainScreen() {
         }
     ) { innerPadding ->
         ScreenContent(Modifier.padding(innerPadding))
-
     }
 }
 

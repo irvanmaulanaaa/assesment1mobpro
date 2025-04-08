@@ -10,4 +10,9 @@
     <string name="hasil">%1$.2f m³</string>
     <string name="invalid">Tidak boleh kosong.</string>
     <string name="reset">Reset</string>
+    <string name="tentang_aplikasi">Tentang aplikasi</string>
+    <string name="copyright">Hivobung adalah aplikasi perhitungan sederhana yang
+    digunakan untuk menghitung berapa volume tabung sehingga sesorang bisa mengetahui
+    isi atau volume dari suatu tabung.\n\nAplikasi ini dibuat untuk mempermudah sesorang
+    dalam menghitung volume atau isi tabung.\n\nCopyright © 2025 Irvan Maulana.\nAll rights reserved.</string>
 </resources>
