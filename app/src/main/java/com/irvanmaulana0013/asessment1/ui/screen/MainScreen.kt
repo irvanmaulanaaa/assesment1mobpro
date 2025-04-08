@@ -1,6 +1,5 @@
 package com.irvanmaulana0013.asessment1.ui.screen
 
-
 import android.content.res.Configuration
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -84,22 +83,22 @@ fun MainScreen(navController: NavHostController) {
 
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier) {
-    var diameter by remember { mutableStateOf("") }
-    var diameterError by remember { mutableStateOf(false) }
+    var diameter by rememberSaveable { mutableStateOf("") }
+    var diameterError by rememberSaveable { mutableStateOf(false) }
 
-    var jariJari by remember { mutableStateOf("") }
-    var jariJariError by remember { mutableStateOf(false) }
+    var jariJari by rememberSaveable { mutableStateOf("") }
+    var jariJariError by rememberSaveable { mutableStateOf(false) }
 
-    var tinggi by remember { mutableStateOf("") }
-    var tinggiError by remember { mutableStateOf(false) }
+    var tinggi by rememberSaveable { mutableStateOf("") }
+    var tinggiError by rememberSaveable { mutableStateOf(false) }
 
     val radioOptions = listOf(
         stringResource(id = R.string.diameter),
         stringResource(id = R.string.jarijari)
     )
 
-    var option by remember { mutableStateOf(radioOptions[0]) }
-    var result by remember { mutableDoubleStateOf(0.0) }
+    var option by rememberSaveable { mutableStateOf(radioOptions[0]) }
+    var result by rememberSaveable { mutableDoubleStateOf(0.0) }
 
     Column(
         modifier = modifier.fillMaxSize()
