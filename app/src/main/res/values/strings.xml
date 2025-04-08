@@ -11,6 +11,11 @@
     <string name="invalid">Tidak boleh kosong.</string>
     <string name="reset">Reset</string>
     <string name="kembali">Kembali</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template_diameter">Hasil perhitungan Volume tabung\n\nDiameter: %1$s m
+        \nTinggi: %2$s m\n\nHasil: %3$,.2f m³</string>
+    <string name="bagikan_template_jarijari">Hasil perhitungan Volume tabung\n\nJari-jari: %1$s m
+        \nTinggi: %2$s m\n\nHasil: %3$,.2f m³</string>
     <string name="tentang_aplikasi">Tentang aplikasi</string>
     <string name="copyright">Hivobung adalah aplikasi perhitungan sederhana yang
     digunakan untuk menghitung berapa volume tabung sehingga sesorang bisa mengetahui
