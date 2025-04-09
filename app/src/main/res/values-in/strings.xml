@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hivobung</string>
+    <string name="keterangan">Hivobung adalah aplikasi perhitungan sederhana yang digunakan untuk
+        menghitung berapa volume tabung sehingga sesorang bisa mengetahui isi atau volume dari
+        suatu tabung.\n\nAplikasi ini dibuat untuk mempermudah sesorang dalam menghitung
+        volume atau isi tabung.\n\nIni beberapa contoh benda yang berbentuk tabung:</string>
+    <string name="copyright">Copyright © 2025 Hivobung.\nAll rights reserved.</string>
+    <string name="tinggi">Tinggi</string>
+    <string name="diameter">Diameter</string>
+    <string name="jarijari">Jari-jari</string>
+    <string name="hitung">Hitung</string>
+    <string name="teks">Volume tabung</string>
+    <string name="hasil">%1$.2f m³</string>
+    <string name="invalid">Tidak boleh kosong.</string>
+    <string name="reset">Reset</string>
+    <string name="gambar">Gambar %1$s</string>
+    <string name="kembali">Kembali</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template_diameter">Hasil perhitungan volume tabung
+        \n\nDiameter: %1$s m\nTinggi: %2$s m\n\nHasil: %3$,.2f m³</string>
+    <string name="intro">Ayo menghitung volume sebuah tabung! Masukkan data berikut:</string>
+    <string name="bagikan_template_jarijari">Hasil perhitungan volume tabung           Jari-jari: %1$s m Tinggi: %2$s m  Hasil: %3$,.2f m³</string>
+    <string name="tentang_aplikasi">Tentang aplikasi</string>
+
+</resources>

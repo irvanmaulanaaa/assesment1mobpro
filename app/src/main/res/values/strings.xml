@@ -1,26 +1,25 @@
 <resources>
     <string name="app_name">Hivobung</string>
-    <string name="intro">Ayo menghitung volume sebuah tabung!
-        Masukkan data berikut:</string>
     <string name="diameter">Diameter</string>
-    <string name="jarijari">Jari-jari</string>
-    <string name="tinggi">Tinggi</string>
-    <string name="hitung">Hitung</string>
-    <string name="teks">Volume tabung:</string>
     <string name="hasil">%1$.2f m³</string>
-    <string name="invalid">Tidak boleh kosong.</string>
     <string name="reset">Reset</string>
-    <string name="gambar">Gambar %1$s</string>
-    <string name="kembali">Kembali</string>
-    <string name="bagikan">Bagikan</string>
-    <string name="bagikan_template_diameter">Hasil perhitungan Volume tabung\n\nDiameter: %1$s m
-        \nTinggi: %2$s m\n\nHasil: %3$,.2f m³</string>
-    <string name="bagikan_template_jarijari">Hasil perhitungan Volume tabung\n\nJari-jari: %1$s m
-        \nTinggi: %2$s m\n\nHasil: %3$,.2f m³</string>
-    <string name="tentang_aplikasi">Tentang aplikasi</string>
-    <string name="keterangan">Hivobung adalah aplikasi perhitungan sederhana yang
-    digunakan untuk menghitung berapa volume tabung sehingga sesorang bisa mengetahui
-    isi atau volume dari suatu tabung.\n\nAplikasi ini dibuat untuk mempermudah sesorang
-    dalam menghitung volume atau isi tabung.\n\nIni beberapa contoh benda yang berbentuk tabung:</string>
+    <string name="gambar">Image %1$s</string>
+    <string name="kembali">Back</string>
+    <string name="bagikan">Share</string>
+    <string name="keterangan">Hivobung is a simple calculation application used to calculate the
+        volume of a cylinder so that someone can find out the contents or volume of a cylinder.
+        \n\nThis application is made to make it easier for someone to calculate the volume or
+        contents of a cylinder.\n\nHere are some examples of objects in the form of cylinders:</string>
     <string name="copyright">Copyright © 2025 Hivobung.\nAll rights reserved.</string>
+    <string name="tinggi">Height</string>
+    <string name="jarijari">Radius</string>
+    <string name="hitung">Count</string>
+    <string name="teks">Volume of the cylinder</string>
+    <string name="invalid">Cannot be empty.</string>
+    <string name="intro">Let\'s calculate the volume of a cylinder! Enter the following data:</string>
+    <string name="bagikan_template_jarijari">The result of calculating the volume of the cylinder
+        \n\nRadius: %1$s m\nHeight: %2$s m\n\nResult: %3$,.2f m³</string>
+    <string name="bagikan_template_diameter">The result of calculating the volume of the cylinder
+        \n\nDiameter: %1$s m\nHeight: %2$s m\n\nResult: %3$,.2f m³</string>
+    <string name="tentang_aplikasi">About the application</string>
 </resources>
