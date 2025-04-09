@@ -20,11 +20,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.irvanmaulana0013.asessment1.R
+import com.irvanmaulana0013.asessment1.model.Tabung
 import com.irvanmaulana0013.asessment1.ui.theme.Asessment1Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(navController: NavHostController) {
+    val data = listOf(
+        Tabung("Gelas", R.drawable.gelas),
+        Tabung("Kaleng", R.drawable.kaleng),
+        Tabung("Tumbler", R.drawable.tumbler)
+    )
+
     Scaffold (
         topBar = {
             TopAppBar(
