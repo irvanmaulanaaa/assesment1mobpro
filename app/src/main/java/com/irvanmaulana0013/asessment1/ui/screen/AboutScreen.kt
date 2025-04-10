@@ -101,14 +101,12 @@ fun AboutScreenContent(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
         )
-
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.fillMaxWidth()
         ) { page ->
             TabungItem(tabung = data[page])
         }
-
         Row(
             modifier = Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
@@ -128,7 +126,6 @@ fun AboutScreenContent(modifier: Modifier = Modifier) {
                 )
             }
         }
-
         Text(
             text = stringResource(R.string.copyright),
             modifier = Modifier.fillMaxWidth()
