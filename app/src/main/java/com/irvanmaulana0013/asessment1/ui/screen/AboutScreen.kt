@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,21 +43,6 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(navController: NavHostController) {
-    val data = listOf(
-        Tabung("Gelas", R.drawable.gelas),
-        Tabung("Kaleng", R.drawable.kaleng),
-        Tabung("Tumbler", R.drawable.tumbler)
-    )
-
-    val pagerState = rememberPagerState(pageCount = { data.size })
-
-    LaunchedEffect(key1 = Unit) {
-        while (true) {
-            delay(3000)
-            val nextPage = (pagerState.currentPage + 1) % data.size
-            pagerState.animateScrollToPage(nextPage)
-        }
-    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -78,66 +65,79 @@ fun AboutScreen(navController: NavHostController) {
             )
         }
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(16.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = stringResource(R.string.keterangan),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            )
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    HorizontalPager(
-                        state = pagerState,
-                        modifier = Modifier.fillMaxWidth()
-                    ) { page ->
-                        AboutScreenContent(tabung = data[page])
-                    }
-                    Row(
-                        modifier = Modifier
-                            .padding(top = 16.dp)
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        data.indices.forEach { index ->
-                            val isSelected = pagerState.currentPage == index
-                            Text(
-                                text = if (isSelected) "●" else "○",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = if (isSelected)
-                                    MaterialTheme.colorScheme.primary
-                                else
-                                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
-                                modifier = Modifier.padding(horizontal = 4.dp)
-                            )
-                        }
-                    }
-                }
-            }
-            Text(
-                text = stringResource(R.string.copyright),
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
+        AboutScreenContent(Modifier.padding(innerPadding))
     }
 }
 
 @Composable
-fun AboutScreenContent(tabung: Tabung, modifier: Modifier = Modifier) {
+fun AboutScreenContent(modifier: Modifier = Modifier) {
+    val data = listOf(
+        Tabung("Gelas", R.drawable.gelas),
+        Tabung("Kaleng", R.drawable.kaleng),
+        Tabung("Tumbler", R.drawable.tumbler)
+    )
+
+    val pagerState = rememberPagerState(pageCount = { data.size })
+
+    LaunchedEffect(key1 = Unit) {
+        while (true) {
+            delay(3000)
+            val nextPage = (pagerState.currentPage + 1) % data.size
+            pagerState.animateScrollToPage(nextPage)
+        }
+    }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.keterangan),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
+        )
+
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxWidth()
+        ) { page ->
+            TabungItem(tabung = data[page])
+        }
+
+        Row(
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            data.indices.forEach { index ->
+                val isSelected = pagerState.currentPage == index
+                Text(
+                    text = if (isSelected) "●" else "○",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (isSelected)
+                        MaterialTheme.colorScheme.primary
+                    else
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+                    modifier = Modifier.padding(horizontal = 4.dp)
+                )
+            }
+        }
+
+        Text(
+            text = stringResource(R.string.copyright),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun TabungItem(tabung: Tabung, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
